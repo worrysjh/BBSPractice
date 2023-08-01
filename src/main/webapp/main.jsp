@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width initial-scale=1">
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/custom.css">
-<title>JSP 게시판 웹 사이트</title>
+<title>농민 지원 Support System</title>
 </head>
 <body>
 	<%	
@@ -27,12 +27,12 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="main.jsp">JSP 게시판 웹 사이트</a>
+			<a class="navbar-brand" href="main.jsp">농민 지원 Support System</a>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="main.jsp">메인</a></li>
-				<li><a href="bbs.jsp">게시판</a></li>
+				<li><a href="bbs.jsp">역경매</a></li>
 			</ul>
 			
 			<%
@@ -80,13 +80,12 @@
 		<div class="jumbotron">
 			<div class="container">
 				<h1>웹 사이트 소개</h1>
-				<p>데이터베이스 강의를 위한 유캠퍼스 제작 전  웹 사이트 제작</p>
-				<p><a class="btn btn-primary btn-pull" href="#" role="button">자세히 알아보기</a></p>
+				<p>농민과 작업자, 일이 필요한 사람과 일손이 필요한 사람을 연결해주는 시스템</p>
 			</div>
 		</div>
 	</div>
 	
-	<div class="container">
+	<!-- <div class="container">
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
 			<ol class="carousel-indicators">
 				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -112,7 +111,7 @@
 				<span class="glyphicon glyphicon-chevron-right"></span>
 			</a>
 		</div>
-	</div>
+	</div> -->
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js">
 	</script>
 	<script src="js/bootstrap.js"></script>

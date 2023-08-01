@@ -12,9 +12,12 @@ public class UserDAO {
 	
 	public UserDAO() {
 		try {
-			String dbURL = "jdbc:mysql://localhost:3306/BBS";
+			//String dbURL = "jdbc:mysql://175.114.225.210:3306/BBS";
+			//String dbID = "tester";
+			//String dbPassword = "P@ssword";
+			String dbURL = "jdbc:mysql://localhost:3307/BBS";
 			String dbID = "root";
-			String dbPassword = "root";
+			String dbPassword = "0000";
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
 		}
@@ -36,18 +39,18 @@ public class UserDAO {
 			if(rs.next()) 
 			{
 				if(rs.getString(1).contentEquals(userPassword))
-					return 1; // ·Î±×ÀÎ ¼º°ø
+					return 1; // ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 				else
-					return 0; // ºñ¹Ð¹øÈ£ ºÒÀÏÄ¡
+					return 0; // ï¿½ï¿½Ð¹ï¿½È£ ï¿½ï¿½ï¿½ï¿½Ä¡
 			}
-			return -1; // ¾ÆÀÌµð°¡ ¾øÀ½
+			return -1; // ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
 		
-		return -2; // µ¥ÀÌÅÍ º£ÀÌ½º ¿À·ù
+		return -2; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	}
 	
 	public int join(User user)
@@ -59,7 +62,7 @@ public class UserDAO {
 			pstmt.setString(1, user.getUserID());
 			pstmt.setString(2, user.getUserPassword());
 			pstmt.setString(3, user.getUserName());
-			pstmt.setString(4, user.getUserGender());
+			pstmt.setString(4, user.getUserType());
 			pstmt.setString(5, user.getUserEmail());
 			return pstmt.executeUpdate();
 		}
@@ -67,7 +70,7 @@ public class UserDAO {
 			e.printStackTrace();
 		
 		}
-		return -1; //µ¥ÀÌÅÍ º£ÀÌ½º ¿À·ù
+		return -1; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	}
 	
 }

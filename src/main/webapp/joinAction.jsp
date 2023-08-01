@@ -7,19 +7,19 @@
 <jsp:setProperty name="user" property="userID" />
 <jsp:setProperty name="user" property="userPassword" />
 <jsp:setProperty name="user" property="userName" />
-<jsp:setProperty name="user" property="userGender" />
+<jsp:setProperty name="user" property="userType" />
 <jsp:setProperty name="user" property="userEmail" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>JSP 게시판 웹 사이트</title>
+<title>농민 지원 Support System</title>
 </head>
 <body> 
 	<%
 	
 		if(user.getUserID() == null || user.getUserPassword() == null || user.getUserID() == null || 
-		user.getUserName() == null || user.getUserGender() == null || user.getUserEmail() == null  )
+		user.getUserName() == null || user.getUserType() == null || user.getUserEmail() == null  )
 		{
 			PrintWriter script = response.getWriter();
 			script.println("<script>");

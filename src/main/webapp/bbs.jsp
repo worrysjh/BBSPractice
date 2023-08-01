@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/custom.css">
-<title>JSP 게시판 웹 사이트</title>
+<title>농민 지원 Support System</title>
 <style type="text/css">
 	a, a:hover{
 	color : #000000;
@@ -45,12 +45,12 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="main.jsp">JSP 게시판 웹 사이트</a>
+			<a class="navbar-brand" href="main.jsp">농민 지원 Support System</a>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li><a href="main.jsp">메인</a></li>
-				<li class="active"><a href="bbs.jsp">게시판</a></li>
+				<li class="active"><a href="bbs.jsp">역경매</a></li>
 			</ul>
 			
 			<%
@@ -103,6 +103,7 @@
 						<th style="background-color: #eeeeee; text-align:center;">제목</th>
 						<th style="background-color: #eeeeee; text-align:center;">작성자</th>
 						<th style="background-color: #eeeeee; text-align:center;">작성일</th> 
+						<th style="background-color: #eeeeee; text-align:center;">상태</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -114,10 +115,23 @@
 					{
 				%>
 					<tr>
-						<td><%=list.get(i).getBbsID()%></td>
+						<td><%= list.get(i).getBbsID()%></td>
 						<td><a href="view.jsp?bbsID=<%=list.get(i).getBbsID()%>"><%=list.get(i).getBbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")%></a></td>
 						<td><%= list.get(i).getUserID() %></td>
 						<td><%= list.get(i).getBbsDate().substring(0, 11) + list.get(i).getBbsDate().substring(11, 13) + " 시 " + list.get(i).getBbsDate().substring(14, 16) +" 분" %></td>
+						<% int bbsState = list.get(i).getBbsAvailable();
+						if( bbsState == 1){
+						%>
+						<!-- <td><a href="bidAction.jsp" class="btn btn-primary pull-right">경매중</a></td> -->
+						<td><a class="btn btn-primary pull-right">경매중</a></td>
+						<%	
+						}else if(bbsState == 2){
+						%>
+						<!-- <td><a href="bbs.jsp" class="btn btn-primary pull-right">경매완료</a></td> -->
+						<td><a class="btn btn-success pull-right">경매완료</a></td>
+						<%	
+						}
+						%>
 					</tr>
 				<%
 					}
@@ -135,7 +149,16 @@
 			<% 
 				}
 			%>
-			<a href="write.jsp" class="btn btn-primary pull-right">글쓰기</a>
+			<%	
+				String userType = null;
+				if(session.getAttribute("userType") == "famer"){
+					userID = (String) session.getAttribute("userID");
+			%>
+				<a href="write.jsp" class="btn btn-primary pull-right">의뢰하기</a>
+			<%
+				}
+			%>
+
 		</div>
 	</div>
 	

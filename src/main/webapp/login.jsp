@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width initial-scale=1">
 <link rel="stylesheet" href="css/bootstrap.css">
-<title>JSP 게시판 웹 사이트</title>
+<title>농민 지원 Support System</title>
 </head>
 <body> 
 	<nav class="navbar navbar-default">
@@ -18,12 +18,12 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="main.jsp">JSP 게시판 웹 사이트</a>
+			<a class="navbar-brand" href="main.jsp">농민 지원 Support System</a>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li><a href="main.jsp">메인</a></li>
-				<li><a href="bbs.jsp">게시판</a></li>
+				<li><a href="bbs.jsp">역경매</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
@@ -54,7 +54,10 @@
 					<input type="submit" class="btn btn-primary form-control" value="로그인">
 
 					</form>
-					<button type="button" class="btn btn-primary" onclick="location.href='join.jsp'">회원가입</button>
+					<div  style="padding-top:20px;">
+						<a href="join.jsp" class="btn btn-primary">회원 가입</a>
+						<!-- <button type="button" class="btn btn-primary" onclick="location.href='join.jsp'">회원가입</button> -->
+					</div>
 			</div>
 		</div>
 		<div class="col-lg-4"></div>

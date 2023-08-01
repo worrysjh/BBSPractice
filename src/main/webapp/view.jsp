@@ -3,6 +3,10 @@
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="bbs.Bbs" %>
 <%@ page import="bbs.BbsDAO" %>
+
+<%@ page import="user.User" %>
+<%@ page import="user.UserDAO" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,11 +14,13 @@
 <meta name="viewport" content="width=device-width initial-scale=1">
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/custom.css">
-<title>JSP 게시판 웹 사이트</title>
+<title>농민 지원 Support System</title>
 </head>
 <body> 
 	<%	
 		String userID = null;
+		String userType = null;
+		userType = (String) session.getAttribute("userID");
 		if(session.getAttribute("userID") != null){
 			userID = (String) session.getAttribute("userID");
 		}
@@ -33,7 +39,6 @@
 		}
 		Bbs bbs = new BbsDAO().getBbs(bbsID);
 	%>
-	
 	<nav class="navbar navbar-default">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed"
@@ -43,12 +48,12 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="main.jsp">JSP 게시판 웹 사이트</a>
+			<a class="navbar-brand" href="main.jsp">농민 지원 Support System</a>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li><a>메인</a></li>
-				<li class="active"><a href="bbs.jsp">게시판</a></li>
+				<li class="active"><a href="bbs.jsp">역경매</a></li>
 			</ul>
 			
 			<%
@@ -97,12 +102,12 @@
 				<table class="table table-striped" style="text-align:enter; border : 1px solid #dddddd;">
 					<thead>
 						<tr>
-							<th colspan="3" style="background-color: #eeeeee; text-align:center;">게시판 글 보기</th>
+							<th colspan="3" style="background-color: #eeeeee; text-align:center;">작업 의뢰 보기</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td style="width: 20%">글제목</td>
+							<td style="width: 20%">작업 의뢰 제목</td>
 							<td colspan= "2"><%= bbs.getBbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %></td>
 						</tr>
 						<tr>
@@ -120,6 +125,16 @@
 					</tbody>
 				</table>
 				<a href="bbs.jsp" class="btn btn-primary">목록</a>
+				<%
+ 					if(userID != null && !userID.equals(bbs.getUserID()) && userType.equals("worker") ){ 
+					/* if(userID != null && !userID.equals(bbs.getUserID())){ */
+				%>
+				<a onclick="return confirm('정말로 입찰하시겠습니까?');" href="bidAction.jsp?bbsID=<%= bbsID %>" class="btn btn-primary">입찰</a>
+				<%
+					}
+				%>
+				
+				
 				<%
 					if(userID != null && userID.equals(bbs.getUserID())){
 				%>

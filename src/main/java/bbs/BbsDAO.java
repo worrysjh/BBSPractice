@@ -12,9 +12,12 @@ public class BbsDAO {
 	
 	public BbsDAO() {
 		try {
-			String dbURL = "jdbc:mysql://localhost:3306/BBS";
+			//String dbURL = "jdbc:mysql://175.114.225.210:3306/BBS";
+			//String dbID = "tester";
+			//String dbPassword = "P@ssword";
+			String dbURL = "jdbc:mysql://localhost:3307/BBS";
 			String dbID = "root";
-			String dbPassword = "root";
+			String dbPassword = "0000";
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
 		}
@@ -38,7 +41,7 @@ public class BbsDAO {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		return ""; // µ¥ÀÌÅÍº£ÀÌ½º ¿À·ù
+		return ""; // ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	}
 	
 	public int getNext() {
@@ -51,12 +54,12 @@ public class BbsDAO {
 			if(rs.next()) {
 				return rs.getInt(1) + 1;
 			}
-			return 1; // Ã¹ ¹øÂ° °Ô½Ã¹°ÀÎ °æ¿ì
+			return 1; // Ã¹ ï¿½ï¿½Â° ï¿½Ô½Ã¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 						
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		return -1; // µ¥ÀÌÅÍº£ÀÌ½º ¿À·ù
+		return -1; // ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	}
 	
 	public int write(String bbsTitle, String userID, String bbsContent) {
@@ -75,12 +78,12 @@ public class BbsDAO {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		return -1; // µ¥ÀÌÅÍº£ÀÌ½º ¿À·ù
+		return -1; // ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	}
 	
 	public ArrayList<Bbs> getList(int pageNumber)
 	{
-		String SQL = "SELECT * FROM BBS WHERE bbsID < ? AND bbsAvailable = 1 ORDER BY bbsID DESC LIMIT 10";
+		String SQL = "SELECT * FROM BBS WHERE bbsID < ? AND bbsAvailable != 0 ORDER BY bbsID DESC LIMIT 10";
 		
 		ArrayList<Bbs> list = new ArrayList<Bbs>();
 		
@@ -121,7 +124,7 @@ public class BbsDAO {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		return false; // µ¥ÀÌÅÍº£ÀÌ½º ¿À·ù
+		return false; // ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	}
 	
 	public Bbs getBbs(int bbsID) {
@@ -145,7 +148,7 @@ public class BbsDAO {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		return null; // µ¥ÀÌÅÍº£ÀÌ½º ¿À·ù
+		return null; // ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	}
 	
 	public int update(int bbsID, String bbsTitle, String bbsContent) {
@@ -161,7 +164,7 @@ public class BbsDAO {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		return -1; // µ¥ÀÌÅÍº£ÀÌ½º ¿À·ù
+		return -1; // ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	}
 	
 	public int delete(int bbsID) {
@@ -173,7 +176,18 @@ public class BbsDAO {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		return -1; // µ¥ÀÌÅÍº£ÀÌ½º ¿À·ù
+		return -1; // ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	}
+	public int bid(int bbsID) {
+		String SQL = "UPDATE BBS SET bbsAvailable = 2 WHERE bbsID = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1,  bbsID);
+			return pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -1; // ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	}
 	
 }
