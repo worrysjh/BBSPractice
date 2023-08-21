@@ -8,6 +8,9 @@
 <jsp:setProperty name="user" property="userPassword" />
 <jsp:setProperty name="user" property="userName" />
 <jsp:setProperty name="user" property="userType" />
+<jsp:setProperty name="user" property="userMachine" />
+<jsp:setProperty name="user" property="machineWidth" />
+<jsp:setProperty name="user" property="userRegion" />
 <jsp:setProperty name="user" property="userEmail" />
 <!DOCTYPE html>
 <html>
@@ -17,10 +20,9 @@
 </head>
 <body> 
 	<%
-	
 		if(user.getUserID() == null || user.getUserPassword() == null || user.getUserID() == null || 
 		user.getUserName() == null || user.getUserType() == null || user.getUserEmail() == null  )
-		{
+		{	
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('입력이 안 된 사항이 있습니다.')");
@@ -28,7 +30,7 @@
 			script.println("</script>");
 		}
 		else
-		{
+		{	
 			UserDAO userDAO = new UserDAO();
 			int result = userDAO.join(user);
 			if (result == -1)

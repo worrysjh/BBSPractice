@@ -12,12 +12,9 @@ public class BbsDAO {
 	
 	public BbsDAO() {
 		try {
-			//String dbURL = "jdbc:mysql://175.114.225.210:3306/BBS";
-			//String dbID = "tester";
-			//String dbPassword = "P@ssword";
-			String dbURL = "jdbc:mysql://localhost:3307/BBS";
-			String dbID = "root";
-			String dbPassword = "0000";
+			String dbURL = "jdbc:mysql://175.114.255.210:3306/bbs";
+			String dbID = "tester";
+			String dbPassword = "P@ssw0rd";
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
 		}
@@ -63,7 +60,7 @@ public class BbsDAO {
 	}
 	
 	public int write(String bbsTitle, String userID, String bbsContent) {
-		String SQL = "INSERT INTO BBS VALUES (?, ?, ?, ?, ?, ?)";
+		String SQL = "INSERT INTO BBS VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			
@@ -73,6 +70,10 @@ public class BbsDAO {
 			pstmt.setString(4,  getDate());
 			pstmt.setString(5,  bbsContent);
 			pstmt.setInt(6,  1);
+			pstmt.setString(7, "machine");
+			pstmt.setInt(8,  0);
+			//pstmt.setString(7, userMachine);
+			//pstmt.setInt(8, regionWidth);
 			return pstmt.executeUpdate();
 			
 		} catch(Exception e) {
@@ -100,6 +101,8 @@ public class BbsDAO {
 				bbs.setBbsDate(rs.getString(4));
 				bbs.setBbsContent(rs.getString(5));
 				bbs.setBbsAvailable(rs.getInt(6));
+//				bbs.setUserMachine(rs.getString(7));
+//				bbs.setRegionWidth(rs.getInt(8));
 				list.add(bbs);
 			}
 						
@@ -143,6 +146,8 @@ public class BbsDAO {
 				bbs.setBbsDate(rs.getString(4));
 				bbs.setBbsContent(rs.getString(5));
 				bbs.setBbsAvailable(rs.getInt(6));
+//				bbs.setUserMachine(rs.getString(7));
+//				bbs.setRegionWidth(rs.getInt(8));
 				return bbs;
 			}
 		} catch(Exception e) {

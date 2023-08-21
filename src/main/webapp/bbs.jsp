@@ -3,6 +3,8 @@
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="bbs.BbsDAO" %>
 <%@ page import="bbs.Bbs" %>
+<%@ page import="user.UserDAO" %>
+<%@ page import="user.User" %>
 <%@ page import="java.util.ArrayList" %>
 
 <!DOCTYPE html>
@@ -26,8 +28,10 @@
 <!--네비게이션 바 부분-->
 	<%	
 		String userID = null;
+		
 		if(session.getAttribute("userID") != null){
 			userID = (String) session.getAttribute("userID");
+			
 		}
 		int pageNumber = 1;
 		if(request.getParameter("pageNumber") != null){
@@ -83,6 +87,7 @@
 					data-toggle="dropdown" role="button" aria-haspopup="true"
 					aria-expanded="false">회원관리<span class="caret"></span></a>
 					<ul class="dropdown-menu">
+						<li><a href="userPage.jsp">내정보</a></li>
 						<li><a href="logoutAction.jsp">로그아웃</a></li>
 					</ul>	
 				</li>
@@ -119,8 +124,8 @@
 						<td><a href="view.jsp?bbsID=<%=list.get(i).getBbsID()%>"><%=list.get(i).getBbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")%></a></td>
 						<td><%= list.get(i).getUserID() %></td>
 						<td><%= list.get(i).getBbsDate().substring(0, 11) + list.get(i).getBbsDate().substring(11, 13) + " 시 " + list.get(i).getBbsDate().substring(14, 16) +" 분" %></td>
-						<% int bbsState = list.get(i).getBbsAvailable();
-						if( bbsState == 1){
+						<% int bbsState = list.get(i).getBbsAvailable();%>
+						<% if( bbsState == 1){
 						%>
 						<!-- <td><a href="bidAction.jsp" class="btn btn-primary pull-right">경매중</a></td> -->
 						<td><a class="btn btn-primary pull-right">경매중</a></td>
@@ -150,9 +155,11 @@
 				}
 			%>
 			<%	
+				UserDAO userDAO = new UserDAO();
+				User user = userDAO.getUser(userID);
 				String userType = null;
-				if(session.getAttribute("userType") == "famer"){
-					userID = (String) session.getAttribute("userID");
+				userType = user.getUserType();
+				if(userType.equals("famer") ){;
 			%>
 				<a href="write.jsp" class="btn btn-primary pull-right">의뢰하기</a>
 			<%

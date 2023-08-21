@@ -8,6 +8,26 @@
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/custom.css">
 <title>농민 지원 Support System</title>
+<style>
+	#forWorkers{
+		display:none;
+	}
+</style>
+<script>
+	window.onload = function() {
+		const famer = document.getElementById("famer");
+		const worker = document.getElementById("worker");
+		const forWorkers = document.getElementById("forWorkers");
+		console.log(worker);
+		famer.onclick = function(){
+			forWorkers.style.display = "none";
+		};
+		worker.onclick = function(){
+			forWorkers.style.display = "block";
+		};
+	};
+</script>
+
 </head>
 <body> 
 	<nav class="navbar navbar-default">
@@ -56,35 +76,44 @@
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="이름" name="userName" maxlength="20">
 					</div>
+					
 					<div class="form-group" style="text-align:center">
-						<div class="btn-group" data-toggle="buttons">
-							<label class="btn btn-primary active">
+						<div class="btn-group" data-toggle="buttons" id="typeRadio">
+							<label id="famer" class="btn btn-primary">
 								<input type="radio" name="userType" autocomplete="off" value="famer" checked>농부
 							</label>
-							<label class="btn btn-primary">
+							<label id="worker" class="btn btn-primary">
 								<input type="radio" name="userType" autocomplete="off" value="worker" checked>작업자
 							</label>
-						</div>
-						
+						</div>	
 					</div>
-					<div class="form-group" style="text-align:center">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" value="tractor">트랙터
-							</label>
-							<label>
-								<input type="checkbox" value="cultivator">경운기
-							</label>
-							<label>
-								<input type="checkbox" value="thresher">탈곡기
-							</label>
+					<div id="forWorkers">
+						<div class="form-group" style="text-align:center">
+							<div class="btn-group" data-toggle="buttons">
+								<label class="btn btn-primary active">
+									<input type="radio" name="userMachine" autocomplete="off" value="tractor" checked>트랙터
+								</label>
+								<label class="btn btn-primary">
+									<input type="radio" name="userMachine" autocomplete="off" value="cultivator" checked>경운기
+								</label>
+								<label class="btn btn-primary">
+									<input type="radio" name="userMachine" autocomplete="off" value="thresher" checked>탈곡기
+								</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="농기계폭" name="machineWidth" maxlength="20">
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="지역" name="userRegion" maxlength="20">
 						</div>
 					</div>
+					
 					<div class="form-group">
 						<input type="email" class="form-control" placeholder="이메일" name="userEmail" maxlength="20">
 					</div>
 					<input type="submit" class="btn btn-primary form-control" value="회원가입">
-					</form>
+				</form>
 			</div>
 		</div>
 		<div class="col-lg-4"></div>

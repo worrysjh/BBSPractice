@@ -7,7 +7,16 @@ public class Bbs {
 	private String bbsDate;
 	private String bbsContent;
 	private int bbsAvailable;
+	private String bbsBidderID;
+	private String userMachine;
+	private int regionWidth;
 	
+	public String getBidderID() {
+		return bbsBidderID;
+	}
+	public void setBidderID(String bbsBidderID) {
+		this.bbsBidderID = bbsBidderID;
+	}
 	public int getBbsID() {
 		return bbsID;
 	}
@@ -43,6 +52,24 @@ public class Bbs {
 	}
 	public void setBbsAvailable(int bbsAvailable) {
 		this.bbsAvailable = bbsAvailable;
+	}
+	public String getBbsBidderID() {
+		return bbsBidderID;
+	}
+	public void setBbsBidderID(String bbsBidderID) {
+		this.bbsBidderID = bbsBidderID;
+	}
+	public String getUserMachine() {
+		return userMachine;
+	}
+	public void setUserMachine(String userMachine) {
+		this.userMachine = userMachine;
+	}
+	public int getRegionWidth() {
+		return regionWidth;
+	}
+	public void setRegionWidth(int regionWidth) {
+		this.regionWidth = regionWidth;
 	}
 	
 	
