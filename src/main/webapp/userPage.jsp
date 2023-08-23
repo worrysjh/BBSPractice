@@ -129,10 +129,10 @@
 							농기계폭
 							<input type="text" class="form-control" placeholder="농기계폭" name="machineWidth" maxlength="20" value="<%= user.getMachineWidth() %>" readonly>
 						</div>
-						<div class="form-group">
-							지역
-							<input type="text" class="form-control" placeholder="지역" name="userRegion" maxlength="20" value="<%= user.getUserRegion() %>" readonly>
-						</div>
+						//<div class="form-group">
+						//	지역
+						//	<input type="text" class="form-control" placeholder="지역" name="userRegion" maxlength="20" value="<%= user.getUserRegion() %>" readonly>
+						//</div>
 					</div>
 					<div class="form-group">
 						이메일
