@@ -116,5 +116,43 @@ public class UserDAO {
 		}
 		return null; // �����ͺ��̽� ����
 	}
+
 	
+	public int searchscore(string userid) {
+		int score;
+		string SQL = "SELECT requestPoint FROM user WHERE userID = userid;";
+	
+		try
+		{
+			pstmt = conn.prepareStatement(SQL);
+			score = pstmt.executeQuery();
+			conn.close();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	
+		return score;
+	}
+		
+	public void gainscore(string userid, int score)
+	{
+		score = score +1;
+		string SQL = "UPDATE user SET requestPoint = ? WHERE userID = userid;";
+	
+		try
+		{			
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, score);
+			rs = pstmt.executeQuery();
+			conn.close();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	
+		return 0;
+	}
 }
